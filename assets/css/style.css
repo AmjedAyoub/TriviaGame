@@ -1,0 +1,42 @@
+
+header{
+    padding: 20px;
+    background-color: black;
+    color: aliceblue;
+    text-align: center;
+}
+
+
+
+
+
+
+
+.answer{
+    padding: 10px;
+    border: 1px solid red;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.questionPanel{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.answerPanel{
+    margin-top: 20px;
+    text-align: -webkit-center;
+}
+
+.container{
+    margin-top: 30px;
+    width: 70%;
+    background-color: bisque;
+}
+
+.timer{
+    text-align: center;
+    padding: 20px;
+
+}
