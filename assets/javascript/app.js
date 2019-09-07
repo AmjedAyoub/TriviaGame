@@ -1,39 +1,50 @@
 
 $(document).ready(function () {
 
+  //To show the start container and hide the quetion container 
   $(".startContainer").css("display", "flow-root");
   $(".questionContainer").css("display", "none");
 
-
+  // The quetion timer0
   var time = 30;
+  // the answer timer which will start after the user chose the answer
   var time2 = 2;
+  // the questio counter
   var count = 1;
+  // the question and answers RRAY
   var objArray = []
+  // THE INTERVAL FOR THE QUESTION TIMER
   var intervalId;
+  // the interval for the answer timer
   var intervalId2;
+  // the correct questions counter
   var correct=0;
+  // the incorrect answer counter
   var incorrect=0;
+  //  a variable to save the correct answer for each question each time 
   var correctAnswer;
+  // a variable to save the image url
   var picUrl;
 
+  // function to start the game
   $("#start").click(function () {
+    
+  //To hide the start container and show the quetion container 
     $(".startContainer").css("display", "none");
     $(".questionContainer").css("display", "flow-root");
+    // starts the question timer
     start();
+    // display new question 
     newQues();
   });
 
-  
-
-
-
-
-  var objArray = []
+  // AJAX query API for questions
   var query = "https://opentdb.com/api.php?amount=50&type=multiple";
   $.ajax({
     url: query,
     method: "GET"
   }).then(function (response) {
+    // save the respone in the array
     objArray = response.results;
     // console.log(objArray)
   });
@@ -43,7 +54,7 @@ $(document).ready(function () {
 
 
 
-
+// to reset the question timer
   function reset() {
 
     time = 30;
@@ -52,10 +63,9 @@ $(document).ready(function () {
 
   }
 
-
+// to start the question timer
   function start() {
 
-    // DONE: Use setInterval to start the count here and set the clock to running.
     clearInterval(intervalId);
     clearInterval(intervalId2);
     intervalId = setInterval(function () {
@@ -72,10 +82,9 @@ $(document).ready(function () {
 
   }
 
-  
+  // to start the answer timer
   function start2() {
 
-    // DONE: Use setInterval to start the count here and set the clock to running.
     clearInterval(intervalId2);
     intervalId2 = setInterval(function () {
       if (time2 > 0) {
@@ -90,20 +99,24 @@ $(document).ready(function () {
 
   }
 
-
+// to append new question
   function newQues() {
+    // if the question counter < 16 only 15 question allowed
     if (count < 16) {
 
       clearInterval(intervalId2);
       var random = Math.floor(Math.random() * objArray.length + 1);
       // console.log(objArray[random].question);
 
+
+      // clearing weird stuff from the text
       var q = (objArray[random].question).replace(/&quot;/g, '"');
       q = (q).replace(/&#039;/g, "'");
       q = (q).replace(/&laquo;/g, "<<");
       q = (q).replace(/&raquo;/g, ">>");
       q = (q).replace(/&hellip;/g, "...");
 
+      // question information "category" "difficulty" "number"
       $(".question").text(q);
       $("#category").text(objArray[random].category);
       $("#difficulty").text(objArray[random].difficulty);
@@ -112,10 +125,13 @@ $(document).ready(function () {
       count++;
       $(".answerPanel").empty();
 
+      // put the answers in an array
       var newArr = objArray[random].incorrect_answers;
       newArr.push(objArray[random].correct_answer);
       correctAnswer = objArray[random].correct_answer;
+      // shuffle the answers
       newArr.sort();
+      // display answers
       for (let i = 0; i < 4; i++) {
         var newh = $("<h4>");
         newh.addClass("answer");
@@ -124,6 +140,7 @@ $(document).ready(function () {
         $(".answerPanel").append(newh);
       }
     }
+    // exeeded the 15 question end game and display info
     else{
       $(".question").text("All done");
       var newDiv = $("<div>");
@@ -161,6 +178,7 @@ $(document).ready(function () {
 
   });
 
+  // to restart the game 
   $(document).on("click", ".rest", function () {
     time2=2;
     count=1;
@@ -171,9 +189,12 @@ $(document).ready(function () {
     start();
   });
 
+  // after the user click 
+  // to compare the user answer with the correct answer
   $(document).on("click", ".answer", function () {
 
     var userAnswer = $(this).attr("data-answer");
+    // API for images
     var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=Boi88Wtkqy6j61XKYNFfl5SbSbL1Hs2c";
 
     $.ajax({
@@ -186,7 +207,7 @@ $(document).ready(function () {
       
       console.log(picUrl);
     });
-
+// if the answer is correct
     if (userAnswer === correctAnswer) {
 
       correct++;
@@ -201,6 +222,7 @@ $(document).ready(function () {
       $(".answerPanel").append(newDiv);
       start2();
     }
+    // if the answer is incorrect
     else {
 
       incorrect++;
@@ -219,20 +241,9 @@ $(document).ready(function () {
 
   })
 
-  // $(".answer").hover(function () {
-  //     var ans=$(this);
-  //     ans.css("opacity", "0.3");
-  //     ans.css("transition","opacity 1s");
-  //     },
-  //     function () {
-  //         var ans=$(this);
-  //         ans.css("opacity", "1");
-
-  //     });
 
 
-
-
+// time converter
   function timeConverter(t) {
 
     var minutes = Math.floor(t / 60);

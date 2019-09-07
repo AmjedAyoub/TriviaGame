@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- link the css files -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <!-- This is the header of the page -->
     <header>
         <h1>Trivia Game</h1>
     </header>
-
+    <!-- Create a start container which will appeare before the game start -->
     <div class="container startContainer">
         <div class="row">
             <div class="col-sm-12">
@@ -24,6 +26,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
+                <!-- this button will start the game -->
                 <button id="start" type="button" class="btn btn-outline-success">
                     <div class="spinner-grow text-warning spin" role="status">
                       <span class="sr-only">Loading...</span>
@@ -33,8 +36,9 @@
             </div>
         </div>
     </div>
+    <!-- This container will include the questions and answers -->
     <div class="container questionContainer">
-
+        <!-- The question timer -->
         <div class="row">
             <div class="col-sm-12">
                 <h2 class="timer">00:00</h2>
@@ -42,7 +46,7 @@
         </div>
 
         <div class="row">
-
+            <!-- question information -->
             <div class="col-sm-3 info">
                 <h3><span id="ofq"></span> / 15</h3>
                 <h4>Category:   </h4>
@@ -50,7 +54,7 @@
                 <h4>Difficulty: </h4>
                 <h5 id="difficulty">????</h5>
             </div>
-
+            <!-- the question -->
             <div class="col-sm-9 questionPanel">
                 <div class="row">
                     <div class="col-sm-12">
@@ -58,7 +62,7 @@
                         <h3 class ="question"></h3>
                     </div>
                 </div>
-                
+                <!-- the answers -->
                 <div class="row">
                     <div class="col-sm-12 answerPanel">
                     </div>
@@ -69,7 +73,7 @@
 
 
 
-
+    <!-- links to javascript files -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
