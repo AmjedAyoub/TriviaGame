@@ -6,6 +6,10 @@ header{
     text-align: center;
 }
 
+img{
+    width: 150px;
+    height: 150px;
+}
 
 
 
@@ -54,6 +58,12 @@ header{
     float: left;
 }
 
+.rest{
+    
+    padding: 15px;
+    width: 160px;
+    margin-bottom: 30px;
+}
 
 
 #welcome{
