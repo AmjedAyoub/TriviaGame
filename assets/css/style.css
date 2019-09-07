@@ -40,3 +40,34 @@ header{
     padding: 20px;
 
 }
+
+.startContainer{
+    text-align: center;
+    min-height: 500px;
+}
+
+.questionContainer{
+    min-height: 500px;
+}
+
+.spin{
+    float: left;
+}
+
+
+
+#welcome{
+    margin-top: 80px;
+    margin-bottom: 110px;
+}
+
+#please{    
+    margin-bottom: 80px;
+}
+
+#start{
+    text-align: center;
+    padding: 15px;
+    width: 160px;
+    margin-bottom: 30px;
+}
