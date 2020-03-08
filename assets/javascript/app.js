@@ -46,7 +46,7 @@ $(document).ready(function () {
   }).then(function (response) {
     // save the respone in the array
     objArray = response.results;
-    // console.log(objArray)
+    console.log(objArray)
   });
 
 
@@ -105,7 +105,7 @@ $(document).ready(function () {
     if (count < 16) {
 
       clearInterval(intervalId2);
-      var random = Math.floor(Math.random() * objArray.length + 1);
+      var random = Math.floor(Math.random() * objArray.length);
       // console.log(objArray[random].question);
 
 
@@ -194,9 +194,13 @@ $(document).ready(function () {
   $(document).on("click", ".answer", function () {
 
     var userAnswer = $(this).attr("data-answer");
-    // API for images
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=Boi88Wtkqy6j61XKYNFfl5SbSbL1Hs2c";
-
+    if (userAnswer === correctAnswer) {
+    // API for imageshttp://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=clapping&api_key=Boi88Wtkqy6j61XKYNFfl5SbSbL1Hs2c";
+  }
+  else{
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=wrong&api_key=Boi88Wtkqy6j61XKYNFfl5SbSbL1Hs2c";
+    }
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -205,39 +209,40 @@ $(document).ready(function () {
       picUrl=response.data[random].images.preview_webp.url;
       console.log(response);
       
-      console.log(picUrl);
+      console.log(picUrl); 
+      if (userAnswer === correctAnswer) {
+
+        correct++;
+  
+        var newDiv = $("<div>");
+        var img = $("<img>");
+        img.attr("src",picUrl);
+        var p = $("<h3>");
+        p.text("Correct answer!!!");
+        newDiv.append(p,img);
+        $(".answerPanel").empty();
+        $(".answerPanel").append(newDiv);
+        start2();
+      }
+      // if the answer is incorrect
+      else {
+  
+        incorrect++;
+        var newDiv = $("<div>");
+        var img = $("<img>");
+        img.attr("src",picUrl);
+        var p = $("<h3>");
+        p.text("Oh incorrect answer!!!");
+        var p2 = $("<h3>");
+        p2.text("the correct answer is: "+correctAnswer);
+        newDiv.append(p,img,p2);
+        $(".answerPanel").empty();
+        $(".answerPanel").append(newDiv);
+        start2();
+      }
     });
 // if the answer is correct
-    if (userAnswer === correctAnswer) {
-
-      correct++;
-
-      var newDiv = $("<div>");
-      var img = $("<img>");
-      img.attr("src",picUrl);
-      var p = $("<h3>");
-      p.text("Correct answer!!!");
-      newDiv.append(p,img);
-      $(".answerPanel").empty();
-      $(".answerPanel").append(newDiv);
-      start2();
-    }
-    // if the answer is incorrect
-    else {
-
-      incorrect++;
-      var newDiv = $("<div>");
-      var img = $("<img>");
-      img.attr("src",picUrl);
-      var p = $("<h3>");
-      p.text("Oh incorrect answer!!!");
-      var p2 = $("<h3>");
-      p2.text("the correct answer is: "+correctAnswer);
-      newDiv.append(p,img,p2);
-      $(".answerPanel").empty();
-      $(".answerPanel").append(newDiv);
-      start2();
-    }
+   
 
   })
 
