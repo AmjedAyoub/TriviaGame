@@ -1,7 +1,7 @@
 # TriviaGame
 
 ## Overview
-***Full-stack application*** designed for word guessing game, for players to guess a word that has been chosen from a dataset.
+***Full-stack application*** designed for Trivia game, for players to guess the correct answer that has been chosen from an API.
 
 ## Getting Started
 These instructions will get you a copy of the project on your local machine.
@@ -11,11 +11,11 @@ Git clone the repository to your local machine:
 
 HTTPS:
 ```
-https://github.com/AmjedAyoub/Word-Guess-Game.git
+https://github.com/AmjedAyoub/TriviaGame.git
 ```
 SSH:
 ```
-git@github.com:AmjedAyoub/Word-Guess-Game.git
+git@github.com:AmjedAyoub/TriviaGame.git
 ```
 
 ## ScreenShots
