@@ -1,24 +1,20 @@
-
 header{
     padding: 20px;
     background-color: black;
     color: aliceblue;
     text-align: center;
 }
+
 body{
     background-image: url(../images/bg.png);
     background-attachment: fixed;
     background-size: 100% 100%;
 }
+
 img{
     width: 150px;
     height: 150px;
 }
-
-
-
-
-
 
 .answer{
     padding: 10px;
@@ -48,8 +44,8 @@ img{
     text-align: center;
     padding: 20px;
     width: fit-content;
-
 }
+
 .timer1{
     text-align: -webkit-center;
 }
@@ -67,13 +63,11 @@ img{
     float: left;
 }
 
-.rest{
-    
+.rest{    
     padding: 15px;
     width: 160px;
     margin-bottom: 30px;
 }
-
 
 #welcome{
     margin-top: 80px;
