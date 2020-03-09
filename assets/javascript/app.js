@@ -4,7 +4,6 @@ $(document).ready(function () {
   //To show the start container and hide the quetion container 
   $(".startContainer").css("display", "flow-root");
   $(".questionContainer").css("display", "none");
-
   // The quetion timer0
   var time = 30;
   // the answer timer which will start after the user chose the answer
@@ -25,11 +24,12 @@ $(document).ready(function () {
   var correctAnswer;
   // a variable to save the image url
   var picUrl;
-
+  
   // function to start the game
   $("#start").click(function () {
     
-  //To hide the start container and show the quetion container 
+    
+    //To hide the start container and show the quetion container 
     $(".startContainer").css("display", "none");
     $(".questionContainer").css("display", "flow-root");
     // starts the question timer
@@ -70,14 +70,20 @@ $(document).ready(function () {
     clearInterval(intervalId2);
     intervalId = setInterval(function () {
       if (time > 0) {
+        
+      if(time < 7){
+        $(".timer").css("background-color","red");
+      }
+      else{
+        $(".timer").css("background-color","green");
+      }
         time--;
         var converted = timeConverter(time);
         $(".timer").text(converted);
       }
       else {
-        ans("wrong Answer");
+        answerfun("wrong Answer");
         reset();
-        newQues();
       }
     }, 1000);
 
@@ -86,6 +92,7 @@ $(document).ready(function () {
   // to start the answer timer
   function start2() {
 
+    clearInterval(intervalId);
     clearInterval(intervalId2);
     intervalId2 = setInterval(function () {
       if (time2 > 0) {
@@ -95,6 +102,7 @@ $(document).ready(function () {
         time2=2;
         reset();
         newQues();
+        start();
       }
     }, 1000);
 
@@ -108,8 +116,6 @@ $(document).ready(function () {
       clearInterval(intervalId2);
       var random = Math.floor(Math.random() * objArray.length);
       // console.log(objArray[random].question);
-
-
       // clearing weird stuff from the text
       var q = (objArray[random].question).replace(/&quot;/g, '"');
       q = (q).replace(/&#039;/g, "'");
@@ -123,8 +129,11 @@ $(document).ready(function () {
       $("#difficulty").text(objArray[random].difficulty);
       $("#qNum").text(count);
       $("#ofq").text(count);
+      console.log("count"+count);
       count++;
       $(".answerPanel").empty();
+      $("#cor").text(correct);
+      $("#incor").text(incorrect);
 
       // put the answers in an array
       var newArr = objArray[random].incorrect_answers;
@@ -194,10 +203,10 @@ $(document).ready(function () {
   // to compare the user answer with the correct answer
   $(document).on("click", ".answer", function () {
     var userAnswer = $(this).attr("data-answer");
-    ans(userAnswer);
+    answerfun(userAnswer);
   })
 
-  function ans(params) {
+  function answerfun(params) {
     if (params === correctAnswer) {
       // API for imageshttp://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=clapping&api_key=Boi88Wtkqy6j61XKYNFfl5SbSbL1Hs2c";
@@ -211,13 +220,9 @@ $(document).ready(function () {
       }).then(function(response) {
         var random=Math.floor(Math.random()*response.data.length);
         picUrl=response.data[random].images.preview_webp.url;
-        console.log(response);
-        
-        console.log(picUrl); 
-        if (params === correctAnswer) {
-  
+        if (params === correctAnswer) {  
           correct++;
-    
+          console.log(correct);
           var newDiv = $("<div>");
           var img = $("<img>");
           img.attr("src",picUrl);
@@ -228,10 +233,10 @@ $(document).ready(function () {
           $(".answerPanel").append(newDiv);
           start2();
         }
-        // if the answer is incorrect
         else {
-    
+          // if the answer is incorrect
           incorrect++;
+          console.log(incorrect);
           var newDiv = $("<div>");
           var img = $("<img>");
           img.attr("src",picUrl);
@@ -245,7 +250,6 @@ $(document).ready(function () {
           start2();
         }
       });
-  // if the answer is correct
   }
 
 // time converter

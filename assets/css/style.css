@@ -5,7 +5,11 @@ header{
     color: aliceblue;
     text-align: center;
 }
-
+body{
+    background-image: url(../images/bg.png);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
 img{
     width: 150px;
     height: 150px;
@@ -26,6 +30,7 @@ img{
 .questionPanel{
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 .answerPanel{
@@ -36,13 +41,17 @@ img{
 .container{
     margin-top: 30px;
     width: 70%;
-    background-color: bisque;
+    background-color: rgba(255, 228, 196, 0.705);
 }
 
 .timer{
     text-align: center;
     padding: 20px;
+    width: fit-content;
 
+}
+.timer1{
+    text-align: -webkit-center;
 }
 
 .startContainer{
