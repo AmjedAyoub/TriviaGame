@@ -28,11 +28,11 @@ git@github.com:AmjedAyoub/TriviaGame.git
 * Bootstrap
 
 ## Links
-This application is deployed on GitHub Pages, [Try it yourself](https://amjedayoub.github.io/Word-Guess-Game).\
-This application is published on [GitHub](https://github.com/AmjedAyoub/Word-Guess-Game).
+This application is deployed on GitHub Pages, [Try it yourself](https://amjedayoub.github.io/TriviaGame).\
+This application is published on [GitHub](https://github.com/AmjedAyoub/TriviaGame).
 
 ## Authors
-See contribution history [here](https://github.com/AmjedAyoub/Word-Guess-Game/graphs/contributors).
+See contribution history [here](https://github.com/AmjedAyoub/TriviaGame/graphs/contributors).
 
 ## Future updates
 At the moment, this app is the minimum viable product. For future updates; improve the UI/UX, and add more functionality and features such as enhancing the mobile responsivity. 
