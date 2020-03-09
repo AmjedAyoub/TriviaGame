@@ -26,9 +26,7 @@ $(document).ready(function () {
   var picUrl;
   
   // function to start the game
-  $("#start").click(function () {
-    
-    
+  $("#start").click(function () {    
     //To hide the start container and show the quetion container 
     $(".startContainer").css("display", "none");
     $(".questionContainer").css("display", "flow-root");
@@ -49,34 +47,25 @@ $(document).ready(function () {
     console.log(objArray)
   });
 
-
-
-
-
-
 // to reset the question timer
   function reset() {
-
     time = 30;
     // DONE: Change the "display" div to "00:00."
     $(".timer").text("00:00");
-
   }
 
 // to start the question timer
   function start() {
-
     clearInterval(intervalId);
     clearInterval(intervalId2);
     intervalId = setInterval(function () {
-      if (time > 0) {
-        
-      if(time < 7){
-        $(".timer").css("background-color","red");
-      }
-      else{
-        $(".timer").css("background-color","green");
-      }
+      if (time > 0) {        
+        if(time < 7){
+          $(".timer").css("background-color","red");
+        }
+        else{
+          $(".timer").css("background-color","green");
+        }
         time--;
         var converted = timeConverter(time);
         $(".timer").text(converted);
@@ -86,12 +75,10 @@ $(document).ready(function () {
         reset();
       }
     }, 1000);
-
   }
 
   // to start the answer timer
   function start2() {
-
     clearInterval(intervalId);
     clearInterval(intervalId2);
     intervalId2 = setInterval(function () {
@@ -105,14 +92,12 @@ $(document).ready(function () {
         start();
       }
     }, 1000);
-
   }
 
 // to append new question
   function newQues() {
     // if the question counter < 16 only 15 question allowed
     if (count < 16) {
-
       clearInterval(intervalId2);
       var random = Math.floor(Math.random() * objArray.length);
       // console.log(objArray[random].question);
@@ -134,7 +119,6 @@ $(document).ready(function () {
       $(".answerPanel").empty();
       $("#cor").text(correct);
       $("#incor").text(incorrect);
-
       // put the answers in an array
       var newArr = objArray[random].incorrect_answers;
       newArr.push(objArray[random].correct_answer);
@@ -167,14 +151,12 @@ $(document).ready(function () {
             h.text("Restart");
             d.append(s);
             b.append(d,h);
-
       $(".answerPanel").empty();
       $(".answerPanel").append(newDiv,b);
       clearInterval(intervalId);
       clearInterval(intervalId2);
     }
   };
-
 
   $(document).on('mouseover', '.answer', function (e) {
     var ans = $(this);
@@ -185,7 +167,6 @@ $(document).ready(function () {
   $(document).on('mouseout', '.answer', function (e) {
     var ans = $(this);
     ans.css("opacity", "1");
-
   });
 
   // to restart the game 
@@ -254,24 +235,18 @@ $(document).ready(function () {
 
 // time converter
   function timeConverter(t) {
-
     var minutes = Math.floor(t / 60);
     var seconds = t - (minutes * 60);
     if (seconds < 10) {
       seconds = "0" + seconds;
     }
-
     if (minutes === 0) {
       minutes = "00";
     }
     else if (minutes < 10) {
       minutes = "0" + minutes;
     }
-
     return minutes + ":" + seconds;
   };
-
-
-
-
+  
 });
